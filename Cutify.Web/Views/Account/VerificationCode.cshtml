@@ -1,0 +1,435 @@
+﻿@model VerificationCodeViewModel
+@{
+    ViewData["Title"] = "Hesabını təsdiq et";
+    Layout = "_Layout"; // varsayılan olarak bu zaten atanmış olabilir
+}
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            min-height: 100vh;
+        }
+
+        .verification-container {
+            padding: 1.5rem;
+            max-width: 100%;
+        }
+
+        .back-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .page-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: #212529;
+        }
+
+        .page-description {
+            color: #6c757d;
+            margin-bottom: 1.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .verification-code-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .code-input {
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            background-color: white;
+        }
+
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .countdown {
+            margin-right: 0.75rem;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .resend-link {
+            color: #212529;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+            .resend-link:hover {
+                text-decoration: underline;
+            }
+
+        .btn-verify {
+            background-color: #212529;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.875rem;
+            font-size: 1rem;
+            font-weight: 500;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+            .btn-verify:hover {
+                background-color: #343a40;
+            }
+
+        /* Desktop enhancements */
+        @@media (min-width: 992px) {
+            .verification-wrapper
+
+        {
+            display: flex;
+            height: 100vh;
+        }
+
+        .brand-side {
+            flex: 1;
+            background-color: #212529;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .brand-logo {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+        }
+
+        .brand-tagline {
+            font-size: 1.5rem;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        .verification-side {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .verification-container {
+            max-width: 480px;
+            padding: 2rem;
+        }
+
+        .verification-code-container {
+            gap: 1rem;
+        }
+
+        .code-input {
+            width: 70px;
+            height: 70px;
+            font-size: 1.75rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+            .code-input:focus {
+                border-color: #212529;
+                box-shadow: 0 0 0 0.2rem rgba(33, 37, 41, 0.25);
+                outline: none;
+            }
+
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    @* <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('.code-input');
+            const completeCodeField = document.getElementById('completeCode');
+            const resendLink = document.getElementById('resendLink');
+            const timerElement = document.getElementById('timer');
+
+            // Set initial timer value
+            let timeLeft = 25; // 25 seconds
+
+            // Start countdown timer
+            const countdownTimer = setInterval(function() {
+                timeLeft--;
+
+                // Format time as MM:SS
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+
+                // Display formatted time
+                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                // Stop timer when it reaches zero
+                if (timeLeft <= 0) {
+                    clearInterval(countdownTimer);
+                    resendLink.style.fontWeight = '600';
+                }
+            }, 1000);
+
+            // Auto-tab between input fields
+            inputs.forEach((input, index) => {
+                input.addEventListener('input', function(e) {
+                    // Ensure input is numeric
+                    this.value = this.value.replace(/[^0-9]/g, '');
+
+                    // Move to next input when value is entered
+                    if (this.value && index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    }
+
+                    // Update hidden form field with complete code
+                    updateCompleteCode();
+                });
+
+                // Handle backspace
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Backspace' && !this.value && index > 0) {
+                        inputs[index - 1].focus();
+                    }
+                });
+
+                // Handle paste
+                input.addEventListener('paste', function(e) {
+                    e.preventDefault();
+                    const pastedData = e.clipboardData.getData('text').trim();
+
+                    // If we have a 4-digit code being pasted
+                    if (/^\d{4}$/.test(pastedData)) {
+                        for (let i = 0; i < inputs.length; i++) {
+                            inputs[i].value = pastedData[i] || '';
+                        }
+                        inputs[inputs.length - 1].focus();
+                        updateCompleteCode();
+                    }
+                });
+            });
+
+            // Update the hidden field with the complete verification code
+            function updateCompleteCode() {
+                let code = '';
+                inputs.forEach(input => {
+                    code += input.value;
+                });
+                completeCodeField.value = code;
+            }
+
+            // Handle resend link click
+            resendLink.addEventListener('click', function(e) {
+                e.preventDefault();
+
+
+                if (timeLeft > 0) return;
+
+
+                // Reset timer
+                timeLeft = 25;
+                timerElement.textContent = '00:25';
+                resendLink.style.fontWeight = '500';
+
+                // Clear input fields
+                inputs.forEach(input => {
+                    input.value = '';
+                });
+                completeCodeField.value = '';
+                inputs[0].focus();
+
+                // You would typically make an AJAX call here to resend the code
+                console.log('Resending verification code...');
+            });
+        });
+    </script> *@
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const inputs = document.querySelectorAll('.code-input');
+        const completeCodeField = document.getElementById('completeCode');
+        const resendLink = document.getElementById('resendLink');
+        const timerElement = document.getElementById('timer');
+        //const emailField = document.querySelector('input[name="Email"]');
+
+        let timeLeft = 25;
+        let countdownTimer;
+
+        // Start timer function
+        function startTimer() {
+            timeLeft = 25;
+            timerElement.textContent = '00:25';
+            resendLink.style.fontWeight = '500';
+
+            if (countdownTimer) clearInterval(countdownTimer);
+
+            countdownTimer = setInterval(function () {
+                timeLeft--;
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                if (timeLeft <= 0) {
+                    clearInterval(countdownTimer);
+                    resendLink.style.fontWeight = '600';
+                }
+            }, 1000);
+        }
+
+        // Auto-tab and validation
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', function () {
+                this.value = this.value.replace(/[^0-9]/g, '');
+
+                if (this.value && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+
+                updateCompleteCode();
+            });
+
+            input.addEventListener('keydown', function (e) {
+                if (e.key === 'Backspace' && !this.value && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+
+            input.addEventListener('paste', function (e) {
+                e.preventDefault();
+                const pastedData = e.clipboardData.getData('text').trim();
+
+                if (/^\d{4}$/.test(pastedData)) {
+                    for (let i = 0; i < inputs.length; i++) {
+                        inputs[i].value = pastedData[i] || '';
+                    }
+                    inputs[inputs.length - 1].focus();
+                    updateCompleteCode();
+                }
+            });
+        });
+
+        function updateCompleteCode() {
+            let code = '';
+            inputs.forEach(input => {
+                code += input.value;
+            });
+            completeCodeField.value = code;
+        }
+
+        // Handle resend click
+        resendLink.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            if (timeLeft > 0) return;
+
+            const email = @Html.Raw(Json.Serialize(Model.Email));
+
+            fetch('/Account/ResendVerificationCode', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log('Yeni kod göndərildi');
+                        inputs.forEach(input => input.value = '');
+                        completeCodeField.value = '';
+                        inputs[0].focus();
+                        startTimer();
+                    } else {
+                        alert(data.message || 'Kod göndərilmədi');
+                    }
+                })
+                .catch(error => {
+                    console.error('Xəta:', error);
+                    alert('Kod göndərilərkən xəta baş verdi');
+                });
+        });
+
+        // Başladıqda taymeri başlat
+        startTimer();
+    });
+</script>
+
+
+<div class="verification-wrapper">
+    <!-- Brand side (desktop only) -->
+    <div class="brand-side d-none d-lg-flex">
+        <div class="brand-logo">CUTIFY</div>
+        <div class="brand-tagline">Hesabınızı təsdiqləyin və bərbər xidmətlərimizə giriş əldə edin</div>
+    </div>
+
+    <!-- Verification side -->
+    <div class="verification-side">
+        <div class="verification-container">
+            <a href="/Account/PasswordReset" class="back-button">
+                <i class="fas fa-chevron-left"></i>
+            </a>
+
+            <h1 class="page-title">Hesabını təsdiq et</h1>
+
+            <p class="page-description">
+                Reshad@gmail.com e-poçt ünvanına göndərilən təsdiq kodunu daxil edərək hesabını təsdiqlə.
+            </p>
+
+            <form asp-action="VerificationCode" asp-controller="Account" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <input type="hidden" asp-for="Email" value="@Model.Email" />
+
+                <div class="verification-code-container">
+                    <input type="text" id="code1" class="code-input" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code" required />
+                    <input type="text" id="code2" class="code-input" maxlength="1" inputmode="numeric" pattern="[0-9]*" required />
+                    <input type="text" id="code3" class="code-input" maxlength="1" inputmode="numeric" pattern="[0-9]*" required />
+                    <input type="text" id="code4" class="code-input" maxlength="1" inputmode="numeric" pattern="[0-9]*" required />
+                </div>
+
+                <input type="hidden" asp-for="Code" id="completeCode" />
+
+                <div class="countdown-container">
+                    <span class="countdown" id="timer">00:25</span>
+                    <a href="#" class="resend-link" id="resendLink">Yenidən kod göndərin</a>
+                </div>
+
+                <button type="submit" class="btn-verify">Təsdiq et</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

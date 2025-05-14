@@ -1,0 +1,272 @@
+﻿@model IEnumerable<Barber>
+@{
+    ViewData["Title"] = "Bərbərini seç";
+}
+
+@section Styles {
+    <style>
+        .back-button {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            margin-bottom: 24px;
+            color: #000;
+            text-decoration: none;
+        }
+
+            .back-button:hover {
+                background-color: #e9ecef;
+            }
+
+        .page-heading {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .page-subtext {
+            color: #6c757d;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .progress-container {
+            display: flex;
+            margin-bottom: 2rem;
+            gap: 0.25rem;
+        }
+
+        .progress-step {
+            height: 4px;
+            flex: 1;
+            border-radius: 2px;
+        }
+
+        .progress-step-active {
+            background-color: #6c757d;
+        }
+
+        .progress-step-inactive {
+            background-color: #dee2e6;
+        }
+
+        .barber-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        @@media (min-width: 768px) {
+            .barber-grid
+
+        {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        }
+
+        @@media (min-width: 992px) {
+            .barber-grid
+
+        {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        }
+
+        .barber-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+            .barber-card:hover {
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+
+        .barber-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        .barber-name {
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .barber-card-selected {
+            border: 2px solid #0d6efd;
+            background-color: rgba(13, 110, 253, 0.05);
+        }
+
+        .action-button {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #9e9e9e;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+
+            .action-button:hover {
+                background-color: #8e8e8e;
+                color: white;
+            }
+
+            .action-button:disabled {
+                background-color: #e9ecef;
+                color: #6c757d;
+                cursor: not-allowed;
+            }
+
+
+        .search-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        @@media (min-width: 576px) {
+            .search-form
+
+        {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        }
+
+        .search-form input[type="text"] {
+            flex: 1;
+            padding: 0.5rem 1rem;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .search-form .btn {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+        }
+
+            .btn-primary:hover {
+                background-color: #0b5ed7;
+            }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+        }
+
+            .btn-secondary:hover {
+                background-color: #5c636a;
+            }
+    </style>
+}
+
+<div class="container py-4">
+    <!-- Back button -->
+    <a href="javascript:history.back()" class="back-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+        </svg>
+    </a>
+
+    <!-- Page heading and subtext -->
+    <h1 class="page-heading">Bərbərini seç</h1>
+    <p class="page-subtext">Sənin üçün uyğun olan bərbəri seç və rahatlıqla növbəti addıma keç.</p>
+
+    <!-- Progress indicator -->
+    <div class="progress-container">
+        <div class="progress-step progress-step-active"></div>
+        <div class="progress-step progress-step-inactive"></div>
+    </div>
+
+    <!-- Search Form -->
+    <form asp-action="Index" method="get" class="mb-4 d-flex gap-2">
+        <input type="text" name="search" class="form-control" placeholder="Bərbərin adını yaz..." />
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-search"></i> Axtar
+        </button>
+        <a href="/Reservation/Index" class="btn btn-secondary">
+            <i class="fas fa-list"></i> Hamısını göstər
+        </a>
+    </form>
+
+    <!-- Barber Grid -->
+    <form id="barberForm"  asp-controller="Reservation" asp-action="Create" method="get">
+        <input type="hidden" id="selectedBarberId" name="BarberId" value="">
+
+        <div class="barber-grid">
+            @foreach (var barber in Model)
+            {
+                <div class="barber-card" onclick="selectBarber('@barber.Id', this)">
+                    <img src="@Url.Content(string.IsNullOrEmpty(barber.ProfileImagePath) ? "/image/barbers/default-avatar.jpg" : barber.ProfileImagePath)"
+                         class="barber-avatar"
+                         alt="@barber.FullName"
+                         onerror="this.onerror=null; this.src='/image/barbers/default-avatar.jpg'">
+
+                    <p class="barber-name">@barber.FullName</p>
+                </div>
+            }
+        </div>
+
+        <!-- Continue Button -->
+        <button type="submit" id="continueButton" class="action-button" disabled>Davam et</button>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        function selectBarber(barberId, element) {
+            // Remove selected class from all cards
+            document.querySelectorAll('.barber-card').forEach(card => {
+                card.classList.remove('barber-card-selected');
+            });
+
+            // Add selected class to clicked card
+            element.classList.add('barber-card-selected');
+
+            // Update hidden input with selected barber ID
+            document.getElementById('selectedBarberId').value = barberId;
+
+            // Enable continue button
+            document.getElementById('continueButton').disabled = false;
+        }
+    </script>
+}

@@ -1,0 +1,34 @@
+﻿@model List<Cutify.Domain.Entities.Reservation>
+
+<h2>My Reservations</h2>
+
+@if (Model.Any())
+{
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Barber</th>
+                    <th>Service</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var res in Model)
+            {
+                        <tr>
+                            <td>@res.BarberId</td> <!-- Optional: Replace with Barber Name -->
+                            <td>@res.ServiceId</td> <!-- Optional: Replace with Service Name -->
+                            <td>@res.Date.ToShortDateString()</td>
+                            <td>@res.Time</td>
+                            <td>@res.Status</td>
+                        </tr>
+            }
+            </tbody>
+        </table>
+}
+else
+{
+        <p>You have no reservations.</p>
+}

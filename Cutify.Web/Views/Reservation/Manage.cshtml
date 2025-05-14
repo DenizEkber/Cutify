@@ -1,0 +1,109 @@
+@using Cutify.Domain.Entities
+@model Reservation
+
+@{
+    ViewData["Title"] = "Manage Reservation";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Manage Reservation</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Dashboard">Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-action="List">Reservations</a></li>
+        <li class="breadcrumb-item active">Manage</li>
+    </ol>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-calendar-alt me-1"></i>
+            Reservation Details
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <dl class="row">
+                        <dt class="col-sm-4">Customer Name</dt>
+                        <dd class="col-sm-8">@Model.CustomerName</dd>
+
+                        <dt class="col-sm-4">Phone</dt>
+                        <dd class="col-sm-8">@Model.CustomerPhone</dd>
+
+                        <dt class="col-sm-4">Date & Time</dt>
+                        <dd class="col-sm-8">@Model.Date.ToString("MMM dd, yyyy") @Model.Time.ToString(@"hh\:mm tt")</dd>
+
+                        <dt class="col-sm-4">Service</dt>
+                        <dd class="col-sm-8">@Model.Service?.Name</dd>
+
+                        <dt class="col-sm-4">Status</dt>
+                        <dd class="col-sm-8">
+                            @switch (Model.Status)
+                            {
+                                case ReservationStatus.Pending:
+                                    <span class="badge bg-warning">Pending</span>
+                                    break;
+                                case ReservationStatus.Confirmed:
+                                    <span class="badge bg-success">Confirmed</span>
+                                    break;
+                                case ReservationStatus.Cancelled:
+                                    <span class="badge bg-danger">Cancelled</span>
+                                    break;
+                                case ReservationStatus.Completed:
+                                    <span class="badge bg-info">Completed</span>
+                                    break;
+                            }
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <h5>Actions</h5>
+                <div class="btn-group" role="group">
+                    @if (Model.Status == ReservationStatus.Pending)
+                    {
+                        <form asp-action="UpdateStatus" method="post" class="d-inline">
+                            <input type="hidden" name="id" value="@Model.Id" />
+                            <input type="hidden" name="status" value="@ReservationStatus.Confirmed" />
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-check"></i> Confirm
+                            </button>
+                        </form>
+                        <form asp-action="UpdateStatus" method="post" class="d-inline">
+                            <input type="hidden" name="id" value="@Model.Id" />
+                            <input type="hidden" name="status" value="@ReservationStatus.Cancelled" />
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                        </form>
+                    }
+                    else if (Model.Status == ReservationStatus.Confirmed)
+                    {
+                        <form asp-action="UpdateStatus" method="post" class="d-inline">
+                            <input type="hidden" name="id" value="@Model.Id" />
+                            <input type="hidden" name="status" value="@ReservationStatus.Completed" />
+                            <button type="submit" class="btn btn-info">
+                                <i class="fas fa-check-double"></i> Complete
+                            </button>
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

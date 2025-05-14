@@ -1,0 +1,367 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Qeydiyyat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            min-height: 100vh;
+        }
+
+        .register-container {
+            padding: 1.5rem;
+            max-width: 100%;
+        }
+
+        .back-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .page-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: #212529;
+        }
+
+        .page-description {
+            color: #6c757d;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-image {
+            width: 60px;
+            height: 60px;
+            background-color: #e9ecef;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            overflow: hidden;
+        }
+
+            .profile-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .profile-icon {
+            color: #adb5bd;
+            font-size: 1.5rem;
+        }
+
+        .upload-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1rem;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            background-color: white;
+            color: #212529;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+            .upload-button i {
+                margin-right: 0.5rem;
+            }
+
+        .form-label {
+            font-size: 0.9rem;
+            color: #212529;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            margin-bottom: 1.25rem;
+            background-color: white;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #adb5bd;
+            z-index: 10;
+            font-size: 1.25rem;
+        }
+
+        .btn-register {
+            background-color: #212529;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.875rem;
+            font-size: 1rem;
+            font-weight: 500;
+            width: 100%;
+            margin-top: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+            .btn-register:hover {
+                background-color: #343a40;
+            }
+
+        .login-link {
+            display: block;
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #495057;
+            font-size: 0.95rem;
+        }
+
+            .login-link a {
+                color: #212529;
+                font-weight: 600;
+                text-decoration: none;
+                margin-left: 0.25rem;
+            }
+
+                .login-link a:hover {
+                    text-decoration: underline;
+                }
+
+        .name-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 0;
+        }
+
+        .name-col {
+            flex: 1;
+        }
+
+        /* Hide file input */
+        #profileImageInput {
+            display: none;
+        }
+
+        /* Desktop enhancements */
+        @@media (min-width: 992px) {
+            .register-wrapper {
+                display: flex;
+                height: 100vh;
+            }
+
+            .brand-side {
+                flex: 1;
+                background-color: #212529;
+                color: white;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 2rem;
+            }
+
+            .brand-logo {
+                font-size: 3rem;
+                font-weight: 900;
+                margin-bottom: 2rem;
+            }
+
+            .brand-tagline {
+                font-size: 1.5rem;
+                text-align: center;
+                max-width: 80%;
+            }
+
+            .register-side {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow-y: auto;
+            }
+
+            .register-container {
+                max-width: 500px;
+                padding: 2rem;
+            }
+
+            .form-control {
+                transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            }
+
+                .form-control:focus {
+                    border-color: #212529;
+                    box-shadow: 0 0 0 0.2rem rgba(33, 37, 41, 0.25);
+                }
+        }
+    </style>
+}
+
+<div class="register-wrapper">
+    <!-- Brand side (desktop only) -->
+    <div class="brand-side d-none d-lg-flex">
+        <div class="brand-logo">CUTIFY</div>
+        <div class="brand-tagline">Bərbər hesabınızı yaradın və salon işlərinizi effektiv şəkildə idarə edin</div>
+    </div>
+
+    <!-- Register side -->
+    <div class="register-side">
+        <div class="register-container">
+            <button class="back-button" onclick="history.back()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+
+            <h1 class="page-title">Qeydiyyatdan keç</h1>
+
+            <p class="page-description">
+                Şəxsi hesabını yarat və salon işlərini daha effektiv şəkildə idarə et.
+            </p>
+
+            <form asp-action="Register" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="profile-section">
+                    <div class="profile-image" id="profileImagePreview">
+                        <i class="fas fa-user profile-icon"></i>
+                    </div>
+                    <label for="profileImageInput" class="upload-button">
+                        <i class="fas fa-upload"></i> Şəkil yüklə
+                    </label>
+                    <input type="file" id="profileImageInput" asp-for="ProfileImage" accept="image/*" />
+                </div>
+
+                <div class="name-row">
+                    <div class="name-col">
+                        <label asp-for="FirstName" class="form-label">Adın</label>
+                        <input asp-for="FirstName" class="form-control" placeholder="Rəşad" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+
+                    <div class="name-col">
+                        <label asp-for="LastName" class="form-label">Soyadın</label>
+                        <input asp-for="LastName" class="form-control" placeholder="Hüseynov" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label">E-poçt ünvanın</label>
+                    <input asp-for="Email" class="form-control" placeholder="reshad@gmail.com" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="WorkplaceAddress" class="form-label">İş yeri ünvanın</label>
+                    <input asp-for="WorkplaceAddress" class="form-control" placeholder="Barber House Nərimanov" />
+                    <span asp-validation-for="WorkplaceAddress" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label">Şifrən</label>
+                    <div class="password-container">
+                        <input asp-for="Password" type="password" class="form-control" id="passwordField" />
+                        <div class="password-toggle" id="passwordToggle">
+                            <i class="far fa-eye-slash" id="passwordIcon"></i>
+                        </div>
+                    </div>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn-register">Qeydiyyatdan keç</button>
+
+                <div class="login-link">
+                    Hesabın var? <a href="/Account/Login">Daxil ol</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Password visibility toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordField = document.getElementById('passwordField');
+            const passwordToggle = document.getElementById('passwordToggle');
+            const passwordIcon = document.getElementById('passwordIcon');
+
+            passwordToggle.addEventListener('click', function() {
+                if (passwordField.type === 'password') {
+                    passwordField.type = 'text';
+                    passwordIcon.classList.remove('fa-eye-slash');
+                    passwordIcon.classList.add('fa-eye');
+                } else {
+                    passwordField.type = 'password';
+                    passwordIcon.classList.remove('fa-eye');
+                    passwordIcon.classList.add('fa-eye-slash');
+                }
+            });
+
+            // Profile image preview
+            const profileImageInput = document.getElementById('profileImageInput');
+            const profileImagePreview = document.getElementById('profileImagePreview');
+
+            profileImageInput.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        // Remove icon if it exists
+                        const iconElement = profileImagePreview.querySelector('.profile-icon');
+                        if (iconElement) {
+                            profileImagePreview.removeChild(iconElement);
+                        }
+
+                        // Remove existing image if it exists
+                        const existingImg = profileImagePreview.querySelector('img');
+                        if (existingImg) {
+                            profileImagePreview.removeChild(existingImg);
+                        }
+
+                        // Create and add new image
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        profileImagePreview.appendChild(img);
+                    }
+
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+        });
+    </script>
+}

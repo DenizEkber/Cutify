@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Verify Code";
+}
+
+<h2>Enter Verification Code</h2>
+
+<form asp-action="VerifyCode" method="post">
+    <div class="form-group">
+        <label for="inputCode">Verification Code</label>
+        <input type="text" name="inputCode" class="form-control" placeholder="123456" required />
+    </div>
+    <button type="submit" class="btn btn-success mt-2">Doğrula</button>
+</form>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="text-danger mt-2">
+        @Html.ValidationSummary()
+    </div>
+}

@@ -1,0 +1,174 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Daxil ol";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .login-wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        @@media (min-width: 992px) {
+            .login-wrapper
+
+        {
+            flex-direction: row;
+        }
+
+        }
+
+        .brand-side {
+            flex: 1;
+            background-color: #212529;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .brand-logo {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+        }
+
+        .brand-tagline {
+            font-size: 1.5rem;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        .login-side {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            max-width: 450px;
+            padding: 2rem;
+        }
+
+        .page-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-description {
+            color: #6c757d;
+            margin-bottom: 2rem;
+        }
+
+        .form-label {
+            font-weight: 500;
+        }
+
+        .form-control {
+            margin-bottom: 1rem;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #adb5bd;
+        }
+
+        .btn-login {
+            background-color: #212529;
+            color: white;
+            font-weight: 500;
+            width: 100%;
+        }
+
+        .login-link {
+            margin-top: 1rem;
+            text-align: center;
+        }
+    </style>
+}
+
+<div class="login-wrapper">
+    <div class="brand-side d-none d-lg-flex">
+        <div class="brand-logo">CUTIFY</div>
+        <div class="brand-tagline">Bərbər rezervasiyalarınızı rahat və tez bir şəkildə idarə edin</div>
+    </div>
+
+    <div class="login-side">
+        <div class="login-container">
+            <h1 class="page-title">Daxil ol</h1>
+            <p class="page-description">Gündəlik görüşlərini yoxla, müştərilərinin rezervasiyalarını izləməyə başla.</p>
+
+            <form asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label">İstifadəçi adı</label>
+                    <input asp-for="Email" class="form-control" placeholder="Rəşad Hüseynov" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label">Şifrə</label>
+                    <div class="password-container">
+                        <input asp-for="Password" type="password" class="form-control" id="passwordField" />
+                        <span class="password-toggle" id="passwordToggle">
+                            <i class="far fa-eye-slash" id="passwordIcon"></i>
+                        </span>
+                    </div>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <a href="/Account/PasswordReset" class="d-block text-end mb-3">Şifrəni unutdum</a>
+
+                <button type="submit" class="btn btn-login">Daxil ol</button>
+
+                <div class="form-check mt-3">
+                    <input asp-for="RememberMe" class="form-check-input" />
+                    <label asp-for="RememberMe" class="form-check-label">Məni xatırla</label>
+                </div>
+
+                <div class="login-link">
+                    Hesabın yoxdur? <a href="/Account/Register">Qeydiyyatdan keç</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const passwordField = document.getElementById('passwordField');
+            const passwordToggle = document.getElementById('passwordToggle');
+            const passwordIcon = document.getElementById('passwordIcon');
+
+            passwordToggle.addEventListener('click', function () {
+                if (passwordField.type === 'password') {
+                    passwordField.type = 'text';
+                    passwordIcon.classList.remove('fa-eye-slash');
+                    passwordIcon.classList.add('fa-eye');
+                } else {
+                    passwordField.type = 'password';
+                    passwordIcon.classList.remove('fa-eye');
+                    passwordIcon.classList.add('fa-eye-slash');
+                }
+            });
+        });
+    </script>
+}

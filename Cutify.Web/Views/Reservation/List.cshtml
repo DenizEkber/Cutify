@@ -1,0 +1,124 @@
+﻿@using Cutify.Domain.Entities
+@model IEnumerable<Reservation>
+
+@{
+    ViewData["Title"] = "Rezervasiyalar";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Rezervasiyalar</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Dashboard">İdarə paneli</a></li>
+        <li class="breadcrumb-item active">Rezervasiyalar</li>
+    </ol>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Bağla"></button>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Bağla"></button>
+        </div>
+    }
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-calendar-alt me-1"></i>
+            Bütün Rezervasiyalar
+        </div>
+        <div class="card-body">
+            <table id="reservationsTable" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Tarix və Saat</th>
+                        <th>Müştəri</th>
+                        <th>Telefon</th>
+                        <th>Xidmət</th>
+                        <th>Status</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var reservation in Model)
+                    {
+                        <tr>
+                            <td>@reservation.Date.ToString("dd MMM yyyy") @reservation.Time.ToString(@"hh\:mm")</td>
+                            <td>@reservation.CustomerName</td>
+                            <td>@reservation.CustomerPhone</td>
+                            <td>@reservation.Service?.Name</td>
+                            <td>
+                                @switch (reservation.Status)
+                                {
+                                    case ReservationStatus.Pending:
+                                        <span class="badge bg-warning">Gözləmədə</span>
+                                        break;
+                                    case ReservationStatus.Confirmed:
+                                        <span class="badge bg-success">Təsdiqləndi</span>
+                                        break;
+                                    case ReservationStatus.Cancelled:
+                                        <span class="badge bg-danger">Ləğv olundu</span>
+                                        break;
+                                    case ReservationStatus.Completed:
+                                        <span class="badge bg-info">Tamamlandı</span>
+                                        break;
+                                }
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    @if (reservation.Status == ReservationStatus.Pending)
+                                    {
+                                        <form asp-action="UpdateStatus" method="post" class="d-inline">
+                                            <input type="hidden" name="id" value="@reservation.Id" />
+                                            <input type="hidden" name="status" value="@ReservationStatus.Confirmed" />
+                                            <button type="submit" class="btn btn-success btn-sm">
+                                                <i class="fas fa-check"></i> Təsdiqlə
+                                            </button>
+                                        </form>
+                                        <form asp-action="UpdateStatus" method="post" class="d-inline">
+                                            <input type="hidden" name="id" value="@reservation.Id" />
+                                            <input type="hidden" name="status" value="@ReservationStatus.Cancelled" />
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="fas fa-times"></i> Ləğv et
+                                            </button>
+                                        </form>
+                                    }
+                                    else if (reservation.Status == ReservationStatus.Confirmed)
+                                    {
+                                        <form asp-action="UpdateStatus" method="post" class="d-inline">
+                                            <input type="hidden" name="id" value="@reservation.Id" />
+                                            <input type="hidden" name="status" value="@ReservationStatus.Completed" />
+                                            <button type="submit" class="btn btn-info btn-sm">
+                                                <i class="fas fa-check-double"></i> Tamamla
+                                            </button>
+                                        </form>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#reservationsTable').DataTable({
+                responsive: true,
+                order: [[0, 'asc']],
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.10.25/i18n/Azerbaijani.json'
+                }
+            });
+        });
+    </script>
+}

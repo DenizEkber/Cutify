@@ -1,0 +1,223 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\LENOVO\\Documents\\C#\\MVC\\Cutify\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{19E81663-2B37-C109-CCB2-59196AEB7A91}|Cutify.Web\\Cutify.Web.csproj|c:\\users\\lenovo\\documents\\c#\\mvc\\cutify\\cutify.web\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19E81663-2B37-C109-CCB2-59196AEB7A91}|Cutify.Web\\Cutify.Web.csproj|solutionrelative:cutify.web\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19E81663-2B37-C109-CCB2-59196AEB7A91}|Cutify.Web\\Cutify.Web.csproj|c:\\users\\lenovo\\documents\\c#\\mvc\\cutify\\cutify.web\\views\\account\\accessdenied.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{19E81663-2B37-C109-CCB2-59196AEB7A91}|Cutify.Web\\Cutify.Web.csproj|solutionrelative:cutify.web\\views\\account\\accessdenied.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19E81663-2B37-C109-CCB2-59196AEB7A91}|Cutify.Web\\Cutify.Web.csproj|c:\\users\\lenovo\\documents\\c#\\mvc\\cutify\\cutify.web\\controllers\\reservationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19E81663-2B37-C109-CCB2-59196AEB7A91}|Cutify.Web\\Cutify.Web.csproj|solutionrelative:cutify.web\\controllers\\reservationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19E81663-2B37-C109-CCB2-59196AEB7A91}|Cutify.Web\\Cutify.Web.csproj|c:\\users\\lenovo\\documents\\c#\\mvc\\cutify\\cutify.web\\views\\reservation\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{19E81663-2B37-C109-CCB2-59196AEB7A91}|Cutify.Web\\Cutify.Web.csproj|solutionrelative:cutify.web\\views\\reservation\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19E81663-2B37-C109-CCB2-59196AEB7A91}|Cutify.Web\\Cutify.Web.csproj|c:\\users\\lenovo\\documents\\c#\\mvc\\cutify\\cutify.web\\views\\account\\verificationcode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{19E81663-2B37-C109-CCB2-59196AEB7A91}|Cutify.Web\\Cutify.Web.csproj|solutionrelative:cutify.web\\views\\account\\verificationcode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19E81663-2B37-C109-CCB2-59196AEB7A91}|Cutify.Web\\Cutify.Web.csproj|c:\\users\\lenovo\\documents\\c#\\mvc\\cutify\\cutify.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19E81663-2B37-C109-CCB2-59196AEB7A91}|Cutify.Web\\Cutify.Web.csproj|solutionrelative:cutify.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19E81663-2B37-C109-CCB2-59196AEB7A91}|Cutify.Web\\Cutify.Web.csproj|c:\\users\\lenovo\\documents\\c#\\mvc\\cutify\\cutify.web\\views\\reservation\\requestverification.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{19E81663-2B37-C109-CCB2-59196AEB7A91}|Cutify.Web\\Cutify.Web.csproj|solutionrelative:cutify.web\\views\\reservation\\requestverification.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19E81663-2B37-C109-CCB2-59196AEB7A91}|Cutify.Web\\Cutify.Web.csproj|c:\\users\\lenovo\\documents\\c#\\mvc\\cutify\\cutify.web\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19E81663-2B37-C109-CCB2-59196AEB7A91}|Cutify.Web\\Cutify.Web.csproj|solutionrelative:cutify.web\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19E81663-2B37-C109-CCB2-59196AEB7A91}|Cutify.Web\\Cutify.Web.csproj|c:\\users\\lenovo\\documents\\c#\\mvc\\cutify\\cutify.web\\views\\reservation\\verifycode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{19E81663-2B37-C109-CCB2-59196AEB7A91}|Cutify.Web\\Cutify.Web.csproj|solutionrelative:cutify.web\\views\\reservation\\verifycode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19E81663-2B37-C109-CCB2-59196AEB7A91}|Cutify.Web\\Cutify.Web.csproj|c:\\users\\lenovo\\documents\\c#\\mvc\\cutify\\cutify.web\\views\\account\\setnewpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{19E81663-2B37-C109-CCB2-59196AEB7A91}|Cutify.Web\\Cutify.Web.csproj|solutionrelative:cutify.web\\views\\account\\setnewpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19E81663-2B37-C109-CCB2-59196AEB7A91}|Cutify.Web\\Cutify.Web.csproj|c:\\users\\lenovo\\documents\\c#\\mvc\\cutify\\cutify.web\\controllers\\servicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19E81663-2B37-C109-CCB2-59196AEB7A91}|Cutify.Web\\Cutify.Web.csproj|solutionrelative:cutify.web\\controllers\\servicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19E81663-2B37-C109-CCB2-59196AEB7A91}|Cutify.Web\\Cutify.Web.csproj|c:\\users\\lenovo\\documents\\c#\\mvc\\cutify\\cutify.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{19E81663-2B37-C109-CCB2-59196AEB7A91}|Cutify.Web\\Cutify.Web.csproj|solutionrelative:cutify.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AccessDenied.cshtml",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Documents\\C#\\MVC\\Cutify\\Cutify.Web\\Views\\Account\\AccessDenied.cshtml",
+              "RelativeDocumentMoniker": "Cutify.Web\\Views\\Account\\AccessDenied.cshtml",
+              "ToolTip": "C:\\Users\\LENOVO\\Documents\\C#\\MVC\\Cutify\\Cutify.Web\\Views\\Account\\AccessDenied.cshtml",
+              "RelativeToolTip": "Cutify.Web\\Views\\Account\\AccessDenied.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-14T13:16:13.874Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Documents\\C#\\MVC\\Cutify\\Cutify.Web\\Views\\Reservation\\Create.cshtml",
+              "RelativeDocumentMoniker": "Cutify.Web\\Views\\Reservation\\Create.cshtml",
+              "ToolTip": "C:\\Users\\LENOVO\\Documents\\C#\\MVC\\Cutify\\Cutify.Web\\Views\\Reservation\\Create.cshtml",
+              "RelativeToolTip": "Cutify.Web\\Views\\Reservation\\Create.cshtml",
+              "ViewState": "AgIAAOAAAAAAAAAAAAAcwCIBAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-14T12:25:43.114Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "VerifyCode.cshtml",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Documents\\C#\\MVC\\Cutify\\Cutify.Web\\Views\\Reservation\\VerifyCode.cshtml",
+              "RelativeDocumentMoniker": "Cutify.Web\\Views\\Reservation\\VerifyCode.cshtml",
+              "ToolTip": "C:\\Users\\LENOVO\\Documents\\C#\\MVC\\Cutify\\Cutify.Web\\Views\\Reservation\\VerifyCode.cshtml",
+              "RelativeToolTip": "Cutify.Web\\Views\\Reservation\\VerifyCode.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-14T11:13:38.181Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Documents\\C#\\MVC\\Cutify\\Cutify.Web\\appsettings.json",
+              "RelativeDocumentMoniker": "Cutify.Web\\appsettings.json",
+              "ToolTip": "C:\\Users\\LENOVO\\Documents\\C#\\MVC\\Cutify\\Cutify.Web\\appsettings.json",
+              "RelativeToolTip": "Cutify.Web\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-12T16:11:01.735Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Documents\\C#\\MVC\\Cutify\\Cutify.Web\\Program.cs",
+              "RelativeDocumentMoniker": "Cutify.Web\\Program.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Documents\\C#\\MVC\\Cutify\\Cutify.Web\\Program.cs",
+              "RelativeToolTip": "Cutify.Web\\Program.cs",
+              "ViewState": "AgIAAEYAAAAAAAAAAAAiwFgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T16:04:14.811Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Documents\\C#\\MVC\\Cutify\\Cutify.Web\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Cutify.Web\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Documents\\C#\\MVC\\Cutify\\Cutify.Web\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Cutify.Web\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAowIIAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T15:48:06.527Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Documents\\C#\\MVC\\Cutify\\Cutify.Web\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Cutify.Web\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Documents\\C#\\MVC\\Cutify\\Cutify.Web\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Cutify.Web\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAiwDcAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T15:23:38.077Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ReservationController.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Documents\\C#\\MVC\\Cutify\\Cutify.Web\\Controllers\\ReservationController.cs",
+              "RelativeDocumentMoniker": "Cutify.Web\\Controllers\\ReservationController.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Documents\\C#\\MVC\\Cutify\\Cutify.Web\\Controllers\\ReservationController.cs",
+              "RelativeToolTip": "Cutify.Web\\Controllers\\ReservationController.cs",
+              "ViewState": "AgIAABwBAAAAAAAAAAAwwCcBAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T15:35:24.458Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "RequestVerification.cshtml",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Documents\\C#\\MVC\\Cutify\\Cutify.Web\\Views\\Reservation\\RequestVerification.cshtml",
+              "RelativeDocumentMoniker": "Cutify.Web\\Views\\Reservation\\RequestVerification.cshtml",
+              "ToolTip": "C:\\Users\\LENOVO\\Documents\\C#\\MVC\\Cutify\\Cutify.Web\\Views\\Reservation\\RequestVerification.cshtml",
+              "RelativeToolTip": "Cutify.Web\\Views\\Reservation\\RequestVerification.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-14T11:13:54.111Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "VerificationCode.cshtml",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Documents\\C#\\MVC\\Cutify\\Cutify.Web\\Views\\Account\\VerificationCode.cshtml",
+              "RelativeDocumentMoniker": "Cutify.Web\\Views\\Account\\VerificationCode.cshtml",
+              "ToolTip": "C:\\Users\\LENOVO\\Documents\\C#\\MVC\\Cutify\\Cutify.Web\\Views\\Account\\VerificationCode.cshtml",
+              "RelativeToolTip": "Cutify.Web\\Views\\Account\\VerificationCode.cshtml",
+              "ViewState": "AgIAAEwBAAAAAAAAAAAAAF8BAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-14T11:14:30.297Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "SetNewPassword.cshtml",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Documents\\C#\\MVC\\Cutify\\Cutify.Web\\Views\\Account\\SetNewPassword.cshtml",
+              "RelativeDocumentMoniker": "Cutify.Web\\Views\\Account\\SetNewPassword.cshtml",
+              "ToolTip": "C:\\Users\\LENOVO\\Documents\\C#\\MVC\\Cutify\\Cutify.Web\\Views\\Account\\SetNewPassword.cshtml",
+              "RelativeToolTip": "Cutify.Web\\Views\\Account\\SetNewPassword.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-14T11:14:18.936Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ServiceController.cs",
+              "DocumentMoniker": "C:\\Users\\LENOVO\\Documents\\C#\\MVC\\Cutify\\Cutify.Web\\Controllers\\ServiceController.cs",
+              "RelativeDocumentMoniker": "Cutify.Web\\Controllers\\ServiceController.cs",
+              "ToolTip": "C:\\Users\\LENOVO\\Documents\\C#\\MVC\\Cutify\\Cutify.Web\\Controllers\\ServiceController.cs",
+              "RelativeToolTip": "Cutify.Web\\Controllers\\ServiceController.cs",
+              "ViewState": "AgIAAKUAAAAAAAAAAAAAABQAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T15:44:48.709Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

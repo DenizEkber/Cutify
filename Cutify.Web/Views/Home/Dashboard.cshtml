@@ -1,0 +1,302 @@
+﻿@model IEnumerable<Reservation>
+
+@{
+    ViewData["Title"] = "Rezervasiyalarım";
+    var selectedDate = ViewBag.SearchDate as string;
+}
+
+    
+    <style>
+        /* Custom styles */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .back-button {
+            padding: 0.75rem 1rem;
+            background: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        
+        .page-subtitle {
+            color: #6c757d;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .search-container {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .search-input {
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            padding: 0.75rem;
+            flex-grow: 1;
+        }
+        
+        .search-button {
+            background-color: #212529;
+            color: white;
+            border: none;
+            border-radius: 0.25rem;
+            padding: 0.75rem 2rem;
+            font-weight: 500;
+        }
+        
+        .reservation-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .reservation-name {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+        
+        .reservation-phone {
+            color: #6c757d;
+            font-size: 1rem;
+        }
+
+        .reservation-service{
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+        
+        .time-badge {
+            background-color: #eeeeee;
+            color: #212529;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            float: right;
+        }
+        
+        .status-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+        
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-confirmed {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status-cancelled {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .status-completed {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .alert {
+            margin-bottom: 1.5rem;
+        }
+        
+        #reservationsTable_wrapper {
+            display: none;
+        }
+        
+        /* Desktop styles */
+        @@media (min-width: 768px) {
+            .container {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 2rem;
+            }
+            
+            .content-wrapper {
+                background-color: white;
+                border-radius: 1rem;
+                padding: 2rem;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            }
+            
+            .reservation-container {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .search-container {
+                max-width: 500px;
+            }
+            
+            .search-button {
+                min-width: 120px;
+            }
+            
+            .reservation-card {
+                transition: transform 0.2s, box-shadow 0.2s;
+            }
+            
+            .reservation-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+            
+            .desktop-view {
+                display: block;
+            }
+            
+            #reservationsTable_wrapper {
+                display: block;
+            }
+            
+            .mobile-view {
+                display: none;
+            }
+        }
+        
+        /* Mobile adjustments to match design */
+        @@media (max-width: 767px) {
+            body {
+                background-color: white;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .page-title {
+                font-size: 1.75rem;
+                margin-top: 1rem;
+            }
+            
+            .desktop-view {
+                display: none;
+            }
+            
+            .mobile-view {
+                display: block;
+            }
+        }
+    </style>
+
+    <div class="container">
+        <div class="d-block d-md-none">
+            <!-- Mobile back button -->
+            <button class="back-button" aria-label="Geri">
+                &lt;
+            </button>
+        </div>
+        
+        <div class="content-wrapper">
+            <h1 class="page-title">Rezervasiyalarım</h1>
+            <p class="page-subtitle">Görmək istədiyin tarixi seç və rezervlərini yoxla</p>
+            
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @TempData["SuccessMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+        <form method="get" asp-controller="Home" asp-action="Dashboard" class="search-container">
+            <input type="date" class="search-input" name="searchDate"  value="@selectedDate" aria-label="Tarix seçin">
+            <button type="submit" class="search-button">Axtar</button>
+            <a href="@Url.Action("Dashboard", "Home")" class="btn btn-secondary ms-2">Hamısını göstər</a>
+        </form>
+
+            
+            <!-- Mobile view - card based -->
+            <div class="mobile-view">
+                <div class="reservation-container">
+                    <!-- Sample reservations for mobile view -->
+                @foreach (var reservation in Model){
+                    <div class="reservation-card">
+                        <div class="time-badge">@reservation.Time</div>
+                        <div class="reservation-name">@reservation.CustomerName</div>
+                        <div class="reservation-phone">@reservation.CustomerPhone</div>
+                        <div class="reservation-service">@reservation.Service?.Name</div>
+                        @* <div class="status-badge status-confirmed">@reservation.Status</div> *@
+
+                    </div>
+                    
+                }
+                </div>
+            </div>
+            
+            <!-- Desktop view - table based -->
+            <div class="desktop-view">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-calendar-alt me-1"></i>
+                        Rezervasiyalar
+                    </div>
+                    <div class="card-body">
+                        <table id="reservationsTable" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Tarix & Vaxt</th>
+                                    <th>Müştəri</th>
+                                    <th>Telefon</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var reservation in Model){
+                                <tr>
+                                    <td>@reservation.Date @reservation.Time</td>
+                                    <td>@reservation.CustomerName</td>
+                                    <td>@reservation.CustomerPhone</td>
+                                    <td>@reservation.Service?.Name</td>
+                                    @* <td><span class="badge bg-success">@reservation.Status</span></td> *@
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS and other required scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap5.min.js"></script>
+    
+    <script>
+        $(document).ready(function () {
+            $('#reservationsTable').DataTable({
+                responsive: true,
+                order: [[0, 'asc']],
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.10.25/i18n/Azerbaijani.json'
+                }
+            });
+        });
+    </script>

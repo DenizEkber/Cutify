@@ -1,0 +1,145 @@
+﻿@{
+    ViewData["Title"] = "Bərbər Rezervasiyası";
+}
+
+@section Styles {
+    <style>
+        .reservation-container {
+            min-height: calc(100vh - 80px);
+        }
+
+        .hero-section {
+            position: relative;
+            height: calc(100vh - 80px);
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
+            overflow: hidden;
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 100%;
+            color: var(--secondary-color);
+        }
+
+        .hero-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn-reserv {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 0.75rem 1rem;
+            font-weight: 600;
+            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 1rem;
+            transition: all 0.2s ease;
+        }
+
+            .btn-reserv:hover, .btn-reserv:focus {
+                background-color: var(--accent-color);
+                color: var(--primary-color);
+            }
+
+        .btn-barber-login {
+            color: var(--secondary-color);
+            text-align: center;
+            display: block;
+            text-decoration: underline;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+            .btn-barber-login:hover, .btn-barber-login:focus {
+                opacity: 0.8;
+                color: var(--secondary-color);
+            }
+
+        /* Desktop version */
+        @@media (min-width: 768px) {
+            .reservation-container {
+                display: flex;
+                flex-direction: row;
+                height: calc(100vh - 80px);
+            }
+
+            .hero-section {
+                width: 50%;
+                height: 100%;
+            }
+
+            .hero-content-desktop {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 3rem;
+                background-color: var(--primary-color);
+                color: var(--secondary-color);
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .btn-container {
+                max-width: 400px;
+            }
+        }
+    </style>
+}
+
+<!-- Mobile Version -->
+<div class="d-block d-md-none">
+    <div class="hero-section">
+        <img src="~/image/barber-cutting-hair.jpg" class="hero-image" alt="Barber cutting client's hair">
+        <div class="hero-content">
+            <h1 class="hero-title">Asan və sürətli bərbər rezervasiyası</h1>
+            <p class="hero-description">Sevdiyin bərbəri seç, sənə uyğun saatı cəmi bir neçə addımda rezerv et.</p>
+            <a asp-controller="Reservation" asp-action="Index" class="btn-reserv">Rezerv et</a>
+            <a asp-controller="Account" asp-action="Login" asp-route-type="barber" class="btn-barber-login">Bərbər kimi daxil ol</a>
+        </div>
+    </div>
+</div>
+
+<!-- Desktop Version -->
+<div class="d-none d-md-block">
+    <div class="reservation-container">
+        <div class="hero-section">
+            <img src="~/image/barber-cutting-hair.jpg" class="hero-image" alt="Barber cutting client's hair">
+        </div>
+        <div class="hero-content-desktop">
+            <h1 class="hero-title">Asan və sürətli bərbər rezervasiyası</h1>
+            <p class="hero-description">Sevdiyin bərbəri seç, sənə uyğun saatı cəmi bir neçə addımda rezerv et.</p>
+            <div class="btn-container">
+                <a asp-controller="Reservation" asp-action="Index" class="btn-reserv">Rezerv et</a>
+                <a asp-controller="Account" asp-action="Login" asp-route-type="barber" class="btn-barber-login">Bərbər kimi daxil ol</a>
+            </div>
+        </div>
+    </div>
+</div>
