@@ -12,9 +12,9 @@ namespace Cutify.Services.Helper
     {
         public static async Task SendEmailAsync(string toEmail, string subject, string body)
         {
-            var fromEmail = "olabilirbilmem1@gmail.com"; // buraya email
-            var fromPassword = "gwazxjsywxejuelv"; // buraya email şifrə
-            var smtpHost = "smtp.gmail.com"; // məsələn: smtp.gmail.com
+            var fromEmail = ""; // email
+            var fromPassword = ""; // password
+            var smtpHost = "smtp.gmail.com"; // smpt host name
             var smtpPort = 587;
 
             var smtpClient = new SmtpClient(smtpHost)
